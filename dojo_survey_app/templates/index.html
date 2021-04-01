@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ clock.super }} - Home
+{% endblock title %}
+
+
+{% block content %}
+<h3>Please fill out the form</h3>
+<form action='/users' method='post'>
+    {% csrf_token %}
+    <div class="form-row">
+        <label for="exampleFormControlInput1" class="form-label">Your Name:</label>
+        <input type="text" class="form-control" name='name'>
+    </div>
+    <div class="form-row">
+        <label for="exampleFormControlInput1" class="form-label">Dojo Location:</label>
+        <select class="objects" name="city">
+            <option class="selected" selected>Choose...</option>
+            {% for location in locations %}
+            <option name="">{{location}}</option>
+            {% endfor %}
+        </select>
+    </div>    
+    <div class="form-row">
+        <label for="exampleFormControlInput1" class="form-label">Favorite Language:</label>
+        <select class="objects" name="lang">
+            <option class="selected" selected>Choose...</option>
+            {% for language in languages %}
+            <option name="">{{language}}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="form-row">
+        <label for="exampleFormControlTextarea1" class="form-label">Comment (optional):</label>
+        <textarea class="form-control" name='comment' id="exampleFormControlTextarea1" rows="3"></textarea>
+    </div>
+    <button type="submit">SUBMIT</button>
+</form>
+
+{% endblock content %}
